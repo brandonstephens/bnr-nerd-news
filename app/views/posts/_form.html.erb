@@ -1,0 +1,15 @@
+<%= form_for post do |f| %>
+
+  <fieldset class="form-group">
+    <%= f.label :headline %>
+    <%= f.text_field :headline, class: 'form-control' %>
+  </fieldset>  
+
+  <fieldset class="form-group">
+    <%= f.label :url %>
+    <%= f.text_field :url, class: 'form-control' %>
+  </fieldset>
+
+  <%= f.submit 'Submit', class: 'btn btn-primary' %>
+
+<% end %>

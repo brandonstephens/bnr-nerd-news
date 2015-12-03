@@ -1,2 +1,16 @@
-<h1>Post#index</h1>
-<p>Find me in app/views/post/index.html.erb</p>
+<p><%= link_to 'New Post', new_post_path, class: 'btn btn-success' %></p>
+
+<% @posts.each do |post| %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2><%= link_to post.headline, post_path(post) %></h2>
+        </div>
+        <div class="panel-footer">
+          <small><%= post.created_at %></small>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
