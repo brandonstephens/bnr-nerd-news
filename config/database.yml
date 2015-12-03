@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: nerd_news_production
-  username: nerd_news
-  password: <%= ENV['NERD_NEWS_DATABASE_PASSWORD'] %>
+  database: nerd_news_production %>
