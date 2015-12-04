@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      
+      <div class="col-md-8">
+        <p><%= simple_format comment.body %></p>
+      </div>
+      
+      <div class="col-md-4">
+        <%= form_for current_user.votes.new(votable: comment) do |f| %>
+          <%= f.hidden_field :votable_type %>
+          <%= f.hidden_field :votable_id %>
+          <%= f.button type: :submit, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-arrow-up"></span>
+          <% end %>
+        <% end %>
+        <p class="text-center"><%= comment.votes.count %></p>
+      </div>
+
+    </div>
+    
+    <div class="list-group">
+      <%= render comment.comments %>
+    </div>
+
+  </div>
+  
+  <div class="panel-footer">
+    <small>Posted by <em><%= comment.user.email %></em> on<%= time_ago_in_words comment.created_at %> 
+      <span class="pull-right">
+        <%= link_to 'Permalink', comment_url(comment), class: 'btn btn-default btn-xs' %> 
+        <%= link_to 'Reply', '#reply', data: {toggle: 'collapse', target: "##{dom_id(comment)}-reply"}, class: 'btn btn-xs btn-info' %>
+      </span> 
+    </small>
+  
+    <div class="collapse" id="<%= dom_id(comment) %>-reply">
+      <%= render 'comments/form', comment: current_user.comments.new(commentable: comment) %>
+    </div>
+
+  </div>
+
+</div>
