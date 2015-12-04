@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   
-
-  resources :comments
-
   devise_for :users
   resources :posts
+  resources :comments
   root to: 'posts#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

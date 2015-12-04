@@ -2,12 +2,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @comment.user %>
+  <%= @comment.user.email %>
 </p>
 
 <p>
-  <strong>Commentalbe:</strong>
-  <%= @comment.commentalbe %>
+  <strong>Commentable:</strong>
+  <%= @comment.commentable_id %>
 </p>
 
 <p>
@@ -15,5 +15,3 @@
   <%= @comment.body %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>

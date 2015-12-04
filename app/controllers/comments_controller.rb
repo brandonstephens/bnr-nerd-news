@@ -3,13 +3,8 @@ class CommentsController < ApplicationController
 
   respond_to :html
 
-  def index
-    @comments = Comment.all
-    respond_with(@comments)
-  end
-
   def show
-    respond_with(@comment)
+    @comment = Comment.find(params[:id])
   end
 
   def new
@@ -17,31 +12,20 @@ class CommentsController < ApplicationController
     respond_with(@comment)
   end
 
-  def edit
-  end
-
   def create
-    @comment = Comment.new(comment_params)
+    @comment = current_user.comments.new(comment_params)
+
+    flash[:success] = 'Comment created' if @comment.save
     @comment.save
-    respond_with(@comment)
-  end
-
-  def update
-    @comment.update(comment_params)
-    respond_with(@comment)
-  end
-
-  def destroy
-    @comment.destroy
-    respond_with(@comment)
+    respond_with @comment, location: @comment.commentable
   end
 
   private
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    def comment_params
-      params.require(:comment).permit(:user_id, :commentalbe_id, :commentalbe_type, :body)
-    end
+  def comment_params
+    params.require(:comment).permit(:commentable_id, :commentable_type, :body)
+  end
 end

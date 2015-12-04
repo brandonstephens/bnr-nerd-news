@@ -9,7 +9,7 @@
             <h2><%= link_to post.headline, post_path(post) %></h2>
           </div>
           <div class="panel-footer">
-            <small>Posted by <em><%= post.user.email %></em> on <%= post.created_at %></small>
+            <small>Posted by <em><%= post.user.email %></em> on <%= time_ago_in_words post.created_at %> | <%= post.comments.count %> replies</small>
           </div>
         </div>
         
