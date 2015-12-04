@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new()
+    @post = Post.new(user_id: current_user.id)
   end
 
   def create
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if @post.update_attributes(post_params).
+    if @post.update_attributes(post_params)
       redirect_to post_path(@post)
     else
       render :edit

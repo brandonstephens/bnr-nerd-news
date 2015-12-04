@@ -1,16 +1,21 @@
-<p><%= link_to 'New Post', new_post_path, class: 'btn btn-success' %></p>
+<div class="row">
+  <div class="col-md-12">
 
-<% @posts.each do |post| %>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h2><%= link_to post.headline, post_path(post) %></h2>
+    <% @posts.each do |post| %>
+      <div class="row">
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2><%= link_to post.headline, post_path(post) %></h2>
+          </div>
+          <div class="panel-footer">
+            <small>Posted by <em><%= post.user.email %></em> on <%= post.created_at %></small>
+          </div>
         </div>
-        <div class="panel-footer">
-          <small><%= post.created_at %></small>
-        </div>
+        
       </div>
-    </div>
+    <% end %>
+    
   </div>
-<% end %>
+</div>
+

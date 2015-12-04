@@ -1,5 +1,7 @@
 <%= form_for post do |f| %>
 
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
   <fieldset class="form-group">
     <%= f.label :headline %>
     <%= f.text_field :headline, class: 'form-control' %>
