@@ -8,4 +8,10 @@ class Comment < ActiveRecord::Base
   validates :user, :commentable, :body, presence: true
 
   scope :latest, -> { order(created_at: :desc) }
+
+  def close_thread
+    update(closed: true)
+    comments.each { |comment| comment.close_thread }
+  end
+
 end

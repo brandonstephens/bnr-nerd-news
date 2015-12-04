@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   
   devise_for :users
   resources :posts
-  resources :comments
+  resources :comments do
+    post :close_thread
+  end
   resources :up_votes
   resources :down_votes
   root to: 'posts#index'

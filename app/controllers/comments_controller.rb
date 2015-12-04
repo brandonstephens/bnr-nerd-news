@@ -20,6 +20,15 @@ class CommentsController < ApplicationController
     respond_with @comment, location: @comment.commentable
   end
 
+  def close_thread
+    @comment = Comment.find(params[:comment_id])
+
+    Comment.transaction do
+      @comment.close_thread
+    end
+    redirect_to @comment
+  end
+
   private
   def set_comment
     @comment = Comment.find(params[:id])

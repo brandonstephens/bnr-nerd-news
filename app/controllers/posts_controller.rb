@@ -28,11 +28,12 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if @post.update_attributes(post_params)
-      redirect_to post_path(@post)
-    else
-      render :edit
-    end
+    flash[:success] = 'Post updated' if @post.update_attributes(post_params)
+    redirect_to post_path(@post)
+
+  rescue ActiveRecord::StaleObjectError
+    @post.reload
+    render 'conflict'
   end
 
   def destroy
@@ -44,7 +45,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:url, :headline, :user_id)
+    params.require(:post).permit(:url, :headline, :user_id, :lock_version)
   end
 
 end

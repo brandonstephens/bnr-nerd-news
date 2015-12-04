@@ -1,6 +1,7 @@
 <%= form_for post do |f| %>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :lock_version%>
 
   <fieldset class="form-group">
     <%= f.label :headline %>
