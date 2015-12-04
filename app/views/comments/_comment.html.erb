@@ -7,14 +7,14 @@
       </div>
       
       <div class="col-md-4">
-        <%= form_for current_user.votes.new(votable: comment) do |f| %>
+        <%= form_for current_user.up_votes.new(votable: comment) do |f| %>
           <%= f.hidden_field :votable_type %>
           <%= f.hidden_field :votable_id %>
           <%= f.button type: :submit, class: 'btn btn-default' do %>
             <span class="glyphicon glyphicon-arrow-up"></span>
           <% end %>
         <% end %>
-        <p class="text-center"><%= comment.votes.count %></p>
+        <p class="text-center"><%= comment.up_votes.count %></p>
       </div>
 
     </div>
