@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :posts
   resources :comments
-  resources :up_votes, only: :create
+  resources :up_votes
+  resources :down_votes
   root to: 'posts#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

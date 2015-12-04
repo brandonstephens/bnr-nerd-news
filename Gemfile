@@ -36,5 +36,7 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'pry', group: [:development, :test]
 
 gem 'devise'
+

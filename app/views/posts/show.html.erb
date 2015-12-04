@@ -15,7 +15,14 @@
             <span class="glyphicon glyphicon-arrow-up"></span>
           <% end %>
         <% end %>
-        <p class="text-center"><%= @post.up_votes.count %></p>
+        <p class="text-center"><%= @post.up_votes.count - @post.down_votes.count %></p>
+        <%= form_for current_user.down_votes.new(votable: @post) do |f| %>
+          <%= f.hidden_field :votable_type %>
+          <%= f.hidden_field :votable_id %>
+          <%= f.button type: :submit, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-arrow-down"></span>
+          <% end %>
+        <% end %>
 
         <small>Posted by <em><%= @post.user.email %></em> on <%= time_ago_in_words @post.created_at %></small>
       </div>
